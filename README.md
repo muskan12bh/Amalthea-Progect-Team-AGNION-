@@ -1,5 +1,3 @@
-# Amalthea-Progect-Team-AGNION-
-
 # FinVriddhi 
 
 **FinVriddhi** is a smart and professional platform designed to simplify **expense reimbursement management** for companies. It ensures **faster reimbursements, multi-level approvals, and complete transparency**.
