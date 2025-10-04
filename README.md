@@ -62,7 +62,7 @@ Team AGNION
 ---
 
 ## 🛠 Technology Stack
-- **Backend:** Python (Flask / Django can be used)  
+- **Backend:** Python (Flask )  
 - **Frontend:** HTML, CSS, JavaScript  
 - **Database:** MySQL / SQLite  
 - **OCR:** For reading receipts   
