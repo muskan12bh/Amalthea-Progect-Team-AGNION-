@@ -59,10 +59,11 @@
 ---
 
 ## 🛠 Technology Stack
-- **Backend:** Python (Flask )  
+- **Backend:** Python   
 - **Frontend:** HTML, CSS, JavaScript  
-- **Database:** MySQL / SQLite  
-- **OCR:** For reading receipts   
+- **Database:** Django
+- **Data Visualisation Libraries:** matplotlib, seaborn
+- **OCR Library:** pytesseract  
 
 ---
 
