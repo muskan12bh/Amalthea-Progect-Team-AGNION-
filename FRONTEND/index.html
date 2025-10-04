@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinVriddhi - Expense Management Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Logout Button (Hidden by default) -->
+    <button id="logoutBtn" class="logout-btn hidden">Logout</button>
+
+    <!-- Welcome View -->
+    <div id="welcomeView" class="view active">
+        <div class="container">
+            <div class="welcome-header">
+                <div class="logo-circle">
+                    <svg class="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                    </svg>
+                </div>
+                <h1 class="main-title">FinVriddhi</h1>
+                <p class="main-subtitle">Your Partner in Smart Expense Management</p>
+            </div>
+            
+            <div class="button-grid">
+                <button class="option-card login-card" onclick="showLogin()">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Login</h3>
+                    <p class="card-description">Access your existing account</p>
+                </button>
+
+                <button class="option-card register-card" onclick="showRegister()">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                            </svg>
+                        </div>
+                        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Register Your Company</h3>
+                    <p class="card-description">Set up expense management</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login View -->
+    <div id="loginView" class="view">
+        <div class="container-small">
+            <button class="back-btn" onclick="showWelcome()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                Back
+            </button>
+            
+            <div class="form-card">
+                <div class="form-header">
+                    <div class="form-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to your account</p>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" id="loginCompanyName" placeholder="Acme Corporation" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Role</label>
+                        <select id="loginRole" required>
+                            <option value="">Select your role...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="you@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Sign In</button>
+                </form>
+
+                <p class="form-footer">
+                    Don't have an account? 
+                    <button class="link-btn" onclick="showRegister()">Register your company</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration View -->
+    <div id="registerView" class="view">
+        <div class="container-medium">
+            <button class="back-btn" onclick="handleRegisterBack()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                Back
+            </button>
+
+            <div class="form-card">
+                <div class="form-header">
+                    <h2>Register Your Company</h2>
+                    <p>Welcome to FinVriddhi</p>
+                </div>
+
+                <!-- Step Progress -->
+                <div class="step-progress">
+                    <div class="step-item active" data-step="1">
+                        <div class="step-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>
+                            </svg>
+                        </div>
+                        <span class="step-label">Basic Info</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step-item" data-step="2">
+                        <div class="step-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <span class="step-label">Set Roles</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step-item" data-step="3">
+                        <div class="step-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 3v12"/>
+                                <circle cx="18" cy="6" r="3"/>
+                                <circle cx="6" cy="18" r="3"/>
+                                <path d="M18 9a9 9 0 0 1-9 9"/>
+                            </svg>
+                        </div>
+                        <span class="step-label">Approval Flow</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Basic Info -->
+                <div id="step1" class="step-content active">
+                    <div class="form-group">
+                        <label>Admin Name</label>
+                        <input type="text" id="adminName" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" id="companyName" placeholder="Acme Corporation" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="adminEmail" placeholder="admin@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="adminPassword" placeholder="Create a secure password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Country</label>
+                        <select id="country" onchange="handleCountryChange()" required>
+                            <option value="">Select your country</option>
+                        </select>
+                    </div>
+
+                    <div id="currencyDisplay" class="info-box hidden">
+                        <p><strong>Currency:</strong> <span id="selectedCurrency"></span></p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Set Roles -->
+                <div id="step2" class="step-content">
+                    <div class="form-group">
+                        <label>Select Company Roles</label>
+                        <select id="roleSelect" onchange="handleAddRole()">
+                            <option value="">Choose a role to add...</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Director">Director</option>
+                            <option value="CFO">CFO</option>
+                            <option value="CEO">CEO</option>
+                            <option value="Team Lead">Team Lead</option>
+                            <option value="HR Manager">HR Manager</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Added Roles</label>
+                        <div id="rolesList" class="roles-list">
+                            <div class="empty-state">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <p>No roles added yet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box warning">
+                        <p><strong>Note:</strong> Add at least 2 roles to continue</p>
+                    </div>
+                </div>
+
+                <!-- Step 3: Approval Flow -->
+                <div id="step3" class="step-content">
+                    <div class="form-group">
+                        <label>Build Approval Workflow</label>
+                        <select id="approvalRoleSelect" onchange="handleAddApprovalStep()">
+                            <option value="">Select role for approval step...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Approval Flow (In Order)</label>
+                        <div id="approvalFlowList" class="approval-flow-list">
+                            <div class="empty-state">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 3v12"/>
+                                    <circle cx="18" cy="6" r="3"/>
+                                    <circle cx="6" cy="18" r="3"/>
+                                    <path d="M18 9a9 9 0 0 1-9 9"/>
+                                </svg>
+                                <p>No approval steps defined yet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Approval Rule</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="approvalRule" value="sequential" checked>
+                                <div class="radio-content">
+                                    <div class="radio-title">Sequential Approval</div>
+                                    <div class="radio-description">Each approver must approve in order</div>
+                                </div>
+                            </label>
+
+                            <label class="radio-option">
+                                <input type="radio" name="approvalRule" value="percentage">
+                                <div class="radio-content">
+                                    <div class="radio-title">Percentage Rule (60%)</div>
+                                    <div class="radio-description">Approved if 60% of approvers approve</div>
+                                </div>
+                            </label>
+
+                            <label class="radio-option">
+                                <input type="radio" name="approvalRule" value="specific">
+                                <div class="radio-content">
+                                    <div class="radio-title">Specific Approver (CFO/CEO)</div>
+                                    <div class="radio-description">Auto-approved if CFO or CEO approves</div>
+                                </div>
+                            </label>
+
+                            <label class="radio-option">
+                                <input type="radio" name="approvalRule" value="hybrid">
+                                <div class="radio-content">
+                                    <div class="radio-title">Hybrid Rule (60% OR CFO)</div>
+                                    <div class="radio-description">Approved if 60% approve OR CFO/CEO approves</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="nextBtn" class="btn-primary" onclick="handleNext()">
+                        <span id="nextBtnText">Next</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboardView" class="view">
+        <div class="container-medium">
+            <div class="dashboard-card">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <h1 class="dashboard-title">Welcome to FinVriddhi!</h1>
+                <p class="dashboard-subtitle">
+                    Company: <span id="dashboardCompanyName"></span>
+                </p>
+                <div class="dashboard-info">
+                    <h3>Setup Complete</h3>
+                    <div id="dashboardDetails"></div>
+                </div>
+                <button class="btn-primary" onclick="goToDashboard()">Go to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modalMessage"></p>
+            <button class="btn-primary" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
